@@ -15,7 +15,6 @@ public class InputManager : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _jumpAction;
-    private InputAction _runAction;
 
     private void Awake()
     {
@@ -23,6 +22,20 @@ public class InputManager : MonoBehaviour
 
         _moveAction = InputSystem.actions["Move"];
         _jumpAction = InputSystem.actions["Jump"];
+    }
+    public void JumpAction(InputAction.CallbackContext context)
+    {
+        if (context.started || context.performed)
+        {
+            Debug.Log("Recognizing jump");
+            JumpWasPressed = true;
+            JumpWasReleased = false;
+        }
+        else if (context.canceled)
+        {
+            JumpWasPressed = false;
+            JumpWasReleased = true;
+        }
     }
 
     private void Update()

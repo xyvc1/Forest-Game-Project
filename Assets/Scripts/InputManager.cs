@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
 
         _moveAction = InputSystem.actions["Move"];
         _jumpAction = InputSystem.actions["Jump"];
+        
     }
     public void JumpAction(InputAction.CallbackContext context)
     {

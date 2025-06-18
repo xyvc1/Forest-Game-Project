@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float coyoteTimer;
 
+    //ANIMS
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         _isFacingRight = true;
@@ -95,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
             _moveVelocity = Vector2.Lerp(_moveVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
             _rb.linearVelocity = new Vector2(_moveVelocity.x, _rb.linearVelocity.y);
         }
+        Anims();
          
     }
 
@@ -373,4 +377,17 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Animations
+
+    private void Anims()
+    {
+        float input = Input.GetAxis("Horizontal");
+        if (input != 0 )
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else { animator.SetBool("isRunning", false); }
+    }
+
+    #endregion
 }
